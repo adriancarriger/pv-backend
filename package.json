@@ -10,7 +10,7 @@
   "author": "Adrian Carriger <acarriger@gmail.com> (http://adriancarriger.com)",
   "license": "MIT",
   "dependencies": {
-    "firebase": "^3.6.3",
+    "firebase": "^3.7.7",
     "promise": "^7.1.1"
   }
 }
