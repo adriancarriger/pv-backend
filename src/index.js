@@ -5,7 +5,7 @@ let Promise = require('promise');
 let path = require('path');
 let fs = require('fs');
 
-let config = require('./config.js').config;
+let { config } = require('./config.js');
 let filePath = path.resolve(__dirname, '../inputs/input.json');
 let json = JSON.parse(fs.readFileSync(filePath, 'utf8'));
 
