@@ -32,20 +32,10 @@ function auth() {
 }
 
 function updateData(updates) {
-  return new Promise( (resolve, reject) => {
-    let completed = 0;
-    for (let i = 0; i < updates.length; i++) {
-      let ref = firebase.database().ref( updates[i].ref );
-      ref.transaction( () => {
-        return updates[i].data;
-      }, () => {
-        completed++;
-        if (completed === updates.length) {
-          resolve();
-        }
-      });
-    }
-  });
+  return Promise.all(updates.reduce((p, update) =>
+    [...p, ...Object.keys(update.data).map((key) =>
+    firebase.database().ref(`${update.ref}/${key}`).transaction(() =>
+      update.data[key], error => { if (error) { console.log(error)}}))], []));
 }
 
 function prepareUpdates() {
